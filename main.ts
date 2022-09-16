@@ -34,7 +34,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
             . . . . . . 3 3 3 3 3 3 3 3 3 3 
             . . . . . . 3 3 3 3 3 3 3 3 3 3 
             `, SpriteKind.Player))
-        snakebody[0].setPosition(foodx - updatevx * 10, foody - updatevy * 10)
+        snakebody[0].setPosition(foodx - (updatevx * 10 + 2), foody - updatevy * 10 + 2)
         foodx = randint(0, 15) * 10
         foody = randint(0, 11) * 10
     }
@@ -45,6 +45,7 @@ let updatevx = 0
 let vy = 0
 let vx = 0
 let foody = 0
+let mySprite = 0
 let foodx = 0
 let atefoodflag = 0
 let snakebody: Sprite[] = []
@@ -88,7 +89,7 @@ let snakefood = sprites.create(img`
     `, SpriteKind.Food)
 let snakeheadx = 0
 let snakeheady = 0
-foodx = 80
+foodx = mySprite
 foody = 60
 vx = 1
 vy = 0
@@ -114,8 +115,8 @@ game.onUpdate(function () {
             . . . . . . 3 3 3 3 3 3 3 3 3 3 
             . . . . . . 3 3 3 3 3 3 3 3 3 3 
             `, SpriteKind.Player))
-        snakebody[0].setPosition(snakeheadx, snakeheady)
-        snakebody.pop()
+        snakebody[0].setPosition(snakeheadx + 2, snakeheady + 2)
+        snakebody.pop().destroy()
         updatevx = vx
         updatevy = vy
         atefoodflag = 0
